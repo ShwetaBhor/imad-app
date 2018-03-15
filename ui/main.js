@@ -7,5 +7,5 @@ element.innerHTML="Shweta Bhor";
 
 var img=document.getElementById('madi');
 img.onClick= function(){
-    img.style.marginLeft='200px';
+    img.style.marginLeft='100px';
 };
