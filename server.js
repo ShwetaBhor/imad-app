@@ -6,23 +6,17 @@ var app = express();
 app.use(morgan('combined'));
 
 var articles = {
-var articleOne : {
+    
+ 'article-1': { 
     title:  'Article-one by Miss. Shweta Bhor',
     heading: 'This is my Article-one',
     date : '15 march 2018',
     content: ` 
     <p>
-            This is the content for my article one.This is the content for my article one.This is the content for my article one.   This is the content for my article one.This is the content for my article one.This is the content for my article one.This is the content for my article one.This is the content for my article one.
-            </p>
-            <p>
-            This is the content for my article one.This is the content for my article one.This is the content for my article one.   This is the content for my article one.This is the content for my article one.This is the content for my article one.This is the content for my article one.This is the content for my article one.
-            </p>
-            <p>
-            This is the content for my article one.This is the content for my article one.This is the content for my article one.   This is the content for my article one.This is the content for my article one.This is the content for my article one.This is the content for my article one.This is the content for my article one.
-            </p>`
-    
-},
-var articleTwo : { 
+            This is the content for my article one.
+          </p> `
+    },
+ 'article-2': { 
     title:  'Article-two by Miss. Shweta Bhor',
     heading: 'This is my Article-two',
     date : '15 march 2018',
@@ -31,7 +25,7 @@ var articleTwo : {
             This is the content for my article two.
           </p> `
     },
-var articleThree : { 
+ 'article-3': { 
     title:  'Article-three by Miss. Shweta Bhor',
     heading: 'This is my Article-Three',
     date : '15 march 2018',
@@ -40,6 +34,7 @@ var articleThree : {
             This is the content for my article twthree.
           </p>`
           }
+          
 };
 
 function createTemplate(data) {
@@ -86,17 +81,12 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-1', function (req, res) {
-  res.send(createTemplate(articleOne));
+app.get('/:articleName', function (req, res) {
+    var articleName=req.param.articleName
+  res.send(createTemplate(articles[articleName]));
 });
 
-app.get('/article-2', function (req, res) {
- res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
-});
 
-app.get('/article-3', function (req, res) {
- res.sendFile(path.join(__dirname, 'ui', 'article-three.html'));
-});
 
 
 app.get('/ui/style.css', function (req, res) {
